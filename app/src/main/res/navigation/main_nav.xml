@@ -6,10 +6,10 @@
     app:startDestination="@id/bookListFragment">
 
     <fragment
-        android:id="@+id/bookListFragment"
-        android:name="com.example.bookchecker.feature.book_list.presentation.BookListFragment"
-        android:label="Books"
-        tools:layout="@layout/fragment_book_list"/>
+        android:id="@+id/bookCollectionFragment"
+        android:name="com.example.bookchecker.feature.book_main.presentation.BookMainFragment"
+        android:label="Коллекция"
+        tools:layout="@layout/fragment_book_main" />
     <!-- другие фрагменты, actions и т.д. -->
 
     <fragment
@@ -18,11 +18,11 @@
         android:label="Добавить"
         tools:layout="@layout/fragment_book_add" />
 
-<!--    <fragment-->
-<!--        android:id="@+id/bookCollectionFragment"-->
-<!--        android:name="com.example.bookchecker.feature.book_collection.presentation.BookCollectionFragment"-->
-<!--        android:label="Коллекция"-->
-<!--        tools:layout="@layout/fragment_book_collection" />-->
+    <fragment
+        android:id="@+id/bookListFragment"
+        android:name="com.example.bookchecker.feature.book_list.presentation.BookListFragment"
+        android:label="Books"
+        tools:layout="@layout/fragment_book_list"/>
 
     <fragment
         android:id="@+id/bookStatsFragment"
