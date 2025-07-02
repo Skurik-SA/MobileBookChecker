@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="backgroundLight">#262626</color> <!-- светло-серый -->
+
+    <!-- Основной цвет приложения -->
+    <color name="primary">#6200EE</color> <!-- фиолетовый Material -->
+
 <!--    <style name="Theme.BookChecker" parent="Theme.MaterialComponents.DayNight.NoActionBar"/>-->
     <style name="MenuItem">
         <item name="android:layout_width">wrap_content</item>
