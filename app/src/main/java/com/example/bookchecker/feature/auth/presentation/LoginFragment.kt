@@ -7,14 +7,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.bookchecker.R
 import com.example.bookchecker.databinding.FragmentLoginBinding
+import com.example.bookchecker.feature.auth.presentation.viewmodel.LoginUiState
 import com.example.bookchecker.feature.auth.presentation.viewmodel.LoginViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
-class LoginFragment: Fragment(R.layout.fragment_login) {
-
+@AndroidEntryPoint
+class LoginFragment : Fragment(R.layout.fragment_login) {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     private val vm: LoginViewModel by viewModels()
@@ -37,15 +40,21 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
             vm.login(username, password)
         }
 
-        binding.btnSocial.setOnClickListener {
-            Toast.makeText(requireContext(), "Social login not implemented", Toast.LENGTH_SHORT).show()
-        }
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vm.loginState.collect { state ->
+                binding.progressBar.visibility =
+                    if (state is LoginUiState.Loading) View.VISIBLE else View.GONE
+                binding.btnLoginSubmit.isEnabled = state != LoginUiState.Loading
 
-        vm.loginResult.observe(viewLifecycleOwner) { success ->
-            if (success) {
-                findNavController().navigate(R.id.action_login_to_main_graph)
-            } else {
-                Toast.makeText(requireContext(), "Ошибка входа", Toast.LENGTH_SHORT).show()
+                when (state) {
+                    is LoginUiState.Success -> findNavController().navigate(R.id.action_login_to_main_graph)
+                    is LoginUiState.Error -> Toast.makeText(
+                        requireContext(),
+                        state.message ?: "Ошибка входа",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    else -> { /* Idle or Loading handled above */ }
+                }
             }
         }
     }

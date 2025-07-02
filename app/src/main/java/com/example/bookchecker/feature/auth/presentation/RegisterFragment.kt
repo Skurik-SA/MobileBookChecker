@@ -6,16 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.bookchecker.R
 import com.example.bookchecker.databinding.FragmentRegisterBinding
-import com.example.bookchecker.feature.auth.presentation.viewmodel.AuthViewModel
+import com.example.bookchecker.feature.auth.presentation.viewmodel.RegisterUiState
+import com.example.bookchecker.feature.auth.presentation.viewmodel.RegisterViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class RegisterFragment : Fragment(R.layout.fragment_register) {
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
-    private val vm: AuthViewModel by activityViewModels()
+    private val vm: RegisterViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,11 +42,26 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             vm.register(email, username, password, repeat)
         }
 
-        vm.registerResult.observe(viewLifecycleOwner) { success ->
-            if (success) {
-                findNavController().navigate(R.id.action_register_to_main_graph)
-            } else {
-                Toast.makeText(requireContext(), "Ошибка регистрации", Toast.LENGTH_SHORT).show()
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vm.registerState.collect { state ->
+                when (state) {
+                    is RegisterUiState.Idle -> {
+                        binding.progressBar.visibility = View.GONE
+                        binding.btnRegisterSubmit.isEnabled = true
+                    }
+                    is RegisterUiState.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                        binding.btnRegisterSubmit.isEnabled = false
+                    }
+                    is RegisterUiState.Success -> {
+                        findNavController().navigate(R.id.action_register_to_main_graph)
+                    }
+                    is RegisterUiState.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        binding.btnRegisterSubmit.isEnabled = true
+                        Toast.makeText(requireContext(), state.message ?: "Ошибка регистрации", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
     }

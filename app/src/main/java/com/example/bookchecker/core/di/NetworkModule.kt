@@ -7,6 +7,7 @@ import com.example.bookchecker.data.remote.api.BookApi
 import com.example.bookchecker.data.remote.api.EntryApi
 import com.example.bookchecker.data.remote.api.NoteApi
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,7 +28,8 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val BASE_URL = "http://127.0.0.1:8000/api/"
+//    private const val BASE_URL = "http://127.0.0.1:8000/api/"
+    private const val BASE_URL = "http://10.0.2.2:8000/api/"
     private const val CACHE_SIZE_BYTES: Long = 10L * 1024 * 1024 // 10MB
     private const val MAX_STALE_SECONDS: Int = 60 * 60 * 24 * 7 // 7 days
     private const val MAX_AGE_SECONDS: Int = 60 // 1 minute
@@ -92,15 +94,17 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideMoshi(): Moshi =
-        Moshi.Builder().build()
+        Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
 
     @Provides
     @Singleton
     fun provideRetrofit(client: OkHttpClient, moshi: Moshi): Retrofit =
         Retrofit.Builder()
             .baseUrl(BASE_URL)    // поменяй на свой URL
-            .client(client)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .client(client)
             .build()
 
     @Provides

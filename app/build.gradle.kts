@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     kotlin("kapt")
-//    alias(libs.plugins.ksp)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.navigation.safe.args)
 }
@@ -83,6 +83,8 @@ dependencies {
     implementation(libs.moshi.converter)
     implementation(libs.moshi.kotlin)
     implementation(libs.okhttp.logging)
+
+    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.15.2")
 
     implementation("com.squareup:javapoet:1.13.0")
     implementation(libs.datastore.preferences)
