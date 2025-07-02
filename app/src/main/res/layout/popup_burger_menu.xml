@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    card:cardCornerRadius="8dp"
+    card:cardUseCompatPadding="true"
+    card:cardElevation="8dp">
+
+    <LinearLayout
+        android:id="@+id/burgerMenuLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/popup_background"
+        android:elevation="8dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+
+        <!-- 7.1 BookChecker + разделитель -->
+        <LinearLayout
+            android:id="@+id/profileLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_profile_logo"/>
+            <TextView
+                android:layout_marginStart="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BookChecker"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="4dp"
+            android:background="?android:attr/listDivider"/>
+
+        <!-- 7.2 Главная -->
+        <LinearLayout
+            android:id="@+id/booksMain"
+            style="@style/MenuItem">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_main" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Главная"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                />
+        </LinearLayout>
+        <!-- 7.3 Добавить -->
+        <LinearLayout
+            android:id="@+id/booksAdd"
+            style="@style/MenuItem">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_add" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Добавить"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                />
+
+        </LinearLayout>
+        <!-- 7.4 Коллекция -->
+        <LinearLayout
+            android:id="@+id/booksCollection"
+            style="@style/MenuItem">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_collections" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Коллекция"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                />
+
+        </LinearLayout>
+        <!-- 7.5 Статистика + разделитель -->
+        <LinearLayout
+            android:id="@+id/booksStats"
+            style="@style/MenuItem">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_stats" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Статистика"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="4dp"
+            android:background="?android:attr/listDivider"/>
+
+        <!-- 7.6 Настройки -->
+        <LinearLayout
+            android:id="@+id/booksSettings"
+            style="@style/MenuItem">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_settings" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Настройки"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

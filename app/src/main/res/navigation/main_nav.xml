@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/bookListFragment">
+
+    <fragment
+        android:id="@+id/bookListFragment"
+        android:name="com.example.bookchecker.feature.book_list.presentation.BookListFragment"
+        android:label="Books"
+        tools:layout="@layout/fragment_book_list"/>
+    <!-- другие фрагменты, actions и т.д. -->
+
+    <fragment
+        android:id="@+id/bookAddFragment"
+        android:name="com.example.bookchecker.feature.book_add.presentation.BookAddFragment"
+        android:label="Добавить"
+        tools:layout="@layout/fragment_book_add" />
+
+<!--    <fragment-->
+<!--        android:id="@+id/bookCollectionFragment"-->
+<!--        android:name="com.example.bookchecker.feature.book_collection.presentation.BookCollectionFragment"-->
+<!--        android:label="Коллекция"-->
+<!--        tools:layout="@layout/fragment_book_collection" />-->
+
+    <fragment
+        android:id="@+id/bookStatsFragment"
+        android:name="com.example.bookchecker.feature.book_stats.presentation.BookStatsFragment"
+        android:label="Статистика"
+        tools:layout="@layout/fragment_book_stats" />
+
+    <fragment
+        android:id="@+id/appSettingsFragment"
+        android:name="com.example.bookchecker.feature.app_settings.presentation.AppSettingsFragment"
+        android:label="Настройки"
+        tools:layout="@layout/fragment_app_settings" />
+</navigation>

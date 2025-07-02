@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_graph"
+    app:startDestination="@id/authEntryFragment">
+
+    <fragment
+        android:id="@+id/authEntryFragment"
+        android:name="com.example.bookchecker.feature.auth.presentation.AuthEntryFragment"
+        android:label="Welcome"
+        tools:layout="@layout/fragment_auth_entry">
+        <action
+            android:id="@+id/action_to_login"
+            app:destination="@id/loginFragment"/>
+        <action
+            android:id="@+id/action_to_register"
+            app:destination="@id/registerFragment"/>
+        <action
+            android:id="@+id/action_to_main_graph"
+            app:destination="@id/main_nav"
+            app:popUpTo="@id/auth_graph"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.bookchecker.feature.auth.presentation.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_to_main_graph"
+            app:destination="@id/main_nav"
+            app:popUpTo="@id/auth_graph"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.bookchecker.feature.auth.presentation.RegisterFragment"
+        android:label="Register"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_register_to_main_graph"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/auth_graph"
+            app:popUpToInclusive="true"/>
+    </fragment>
+</navigation>

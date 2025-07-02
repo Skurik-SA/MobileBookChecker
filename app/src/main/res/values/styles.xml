@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Фон -->
+    <color name="backgroundLight">#FAFAFA</color> <!-- светло-серый -->
+
+    <!-- Основной цвет приложения -->
+    <color name="primary">#6200EE</color> <!-- фиолетовый Material -->
+
+    <!-- Цвет текста на фоне -->
+    <color name="onBackground">#212121</color> <!-- тёмно-серый -->
+
+    <style name="MenuItem">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:elevation">4dp</item> <!-- Добавляем тень -->
+        <!-- иконка + текст -->
+    </style>
+</resources>
