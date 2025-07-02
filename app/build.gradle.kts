@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-//    kotlin("kapt")
-    alias(libs.plugins.ksp)
+    kotlin("kapt")
+//    alias(libs.plugins.ksp)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.navigation.safe.args)
 }
@@ -71,11 +71,11 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
+    kapt(libs.hilt.compiler)
 
     // Room
     implementation(libs.room.runtime)
-    ksp(libs.room.compiler)
+    kapt(libs.room.compiler)
     implementation(libs.room.ktx)
 
     // Retrofit & Moshi
@@ -85,4 +85,5 @@ dependencies {
     implementation(libs.okhttp.logging)
 
     implementation("com.squareup:javapoet:1.13.0")
+    implementation(libs.datastore.preferences)
 }
