@@ -117,7 +117,8 @@ class MainActivity : AppCompatActivity() {
             R.id.booksAdd to R.id.bookAddFragment,
             R.id.booksCollection to R.id.bookCollectionFragment,
             R.id.booksStats to R.id.bookStatsFragment,
-            R.id.booksSettings to R.id.appSettingsFragment
+            R.id.booksSettings to R.id.appSettingsFragment,
+            R.id.booksApiTest to R.id.testApiFragment
         ).forEach { (id, dest) ->
             popupView.findViewById<LinearLayout>(id).setOnClickListener {
                 dest?.let { navController.navigate(it) }

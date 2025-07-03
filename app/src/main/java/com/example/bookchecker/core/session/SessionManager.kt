@@ -9,9 +9,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import javax.inject.Singleton
 
 private val Context.dataStore by preferencesDataStore(name = "auth_prefs")
 
+@Singleton
 class SessionManager @Inject constructor(
     @ApplicationContext private val context: Context
 ) {

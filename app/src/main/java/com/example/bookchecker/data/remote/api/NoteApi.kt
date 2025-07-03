@@ -27,7 +27,7 @@ interface NoteApi {
     @PATCH("entries/{entryId}/notes/{noteId}/")
     suspend fun update(
         @Path("entryId") entryId: Long,
-        @Path("noteId") noteId: Long,
+        @Path("noteId") noteId: Long?,
         @Body dto: NoteDto
     ): NoteDto
 

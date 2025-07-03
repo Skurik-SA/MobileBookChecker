@@ -19,5 +19,5 @@ interface NoteDao {
     suspend fun delete(id: Long)
 
     @Query("SELECT * FROM notes WHERE entry_id = :entryId")
-    suspend fun getByEntryId(entryId: Long): List<NoteEntity>
+    suspend fun getByEntryId(entryId: Long?): List<NoteEntity>
 }

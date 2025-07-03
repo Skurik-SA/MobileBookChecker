@@ -10,7 +10,7 @@ import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
+
 class NoteRepositoryImpl @Inject constructor(
     private val remote: NoteRemoteDataSource,
     private val local: NoteLocalDataSource,

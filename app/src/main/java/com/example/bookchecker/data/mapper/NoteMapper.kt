@@ -6,7 +6,7 @@ import com.example.bookchecker.domain.model.Note
 
 
 object NoteMapper {
-    fun dtoToEntity(dto: NoteDto, entryId: Long): NoteEntity = NoteEntity(
+    fun dtoToEntity(dto: NoteDto, entryId: Long?): NoteEntity = NoteEntity(
         id = dto.id,
         entryId = entryId,
         text = dto.text,

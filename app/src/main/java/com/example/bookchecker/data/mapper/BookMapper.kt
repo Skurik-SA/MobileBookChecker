@@ -12,7 +12,7 @@ object BookMapper {
         totalPages = dto.totalPages,
         description = dto.description,
         coverUrl = dto.cover,
-        genres = dto.genres.joinToString(",") // store as CSV
+        genres = dto.genres!!.joinToString(",") // store as CSV
     )
 
     fun entityToDomain(entity: BookEntity): Book = Book(
@@ -32,7 +32,7 @@ object BookMapper {
         totalPages = model.totalPages,
         description = model.description,
         coverUrl = model.coverUrl,
-        genres = model.genres.joinToString(",")
+        genres = model.genres!!.joinToString(",")
     )
 
     fun domainToDto(model: Book): BookDto = BookDto(

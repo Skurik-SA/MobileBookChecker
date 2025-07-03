@@ -1,9 +1,12 @@
 package com.example.bookchecker.data.remote.dto
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+
+@JsonClass(generateAdapter = true)
 data class EntryDto(
-    val id: Long,
+    val id: Long? = null,
 
     @param:Json(name = "book")
     val book: BookDto,
@@ -11,12 +14,12 @@ data class EntryDto(
     val status: String,
 
     @param:Json(name = "started_at")
-    val startedAt: String?,
+    val startedAt: String? = null,
 
     @param:Json(name = "finished_at")
-    val finishedAt: String?,
+    val finishedAt: String? = null,
 
-    val progress: ProgressDto,
-    val rating: RatingDto?,
+    val progress: ProgressDto? = null,
+    val rating: RatingDto? = null,
     val notes: List<NoteDto> = emptyList()
 )

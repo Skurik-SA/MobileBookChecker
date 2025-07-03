@@ -2,6 +2,8 @@ package com.example.bookchecker.data.repository
 
 import com.example.bookchecker.core.session.SessionManager
 import com.example.bookchecker.data.local.source.EntryLocalDataSource
+import com.example.bookchecker.data.mapper.EntryMapper
+import com.example.bookchecker.data.remote.dto.EntryDto
 import com.example.bookchecker.data.remote.source.EntryRemoteDataSource
 import com.example.bookchecker.domain.model.Entry
 import com.example.bookchecker.domain.repository.EntryRepository
@@ -9,6 +11,7 @@ import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 import javax.inject.Singleton
+
 
 @Singleton
 class EntryRepositoryImpl @Inject constructor(
@@ -21,10 +24,10 @@ class EntryRepositoryImpl @Inject constructor(
         sessionManager.accessToken.firstOrNull() != null
     }
 
-
     override suspend fun addEntry(entry: Entry): Entry {
         return if (isAuthorized()) {
-            val created = remote.createEntry(entry)
+            val createdDto = remote.createEntry(EntryMapper.domainToDto(entry))
+            val created = EntryMapper.dtoToDomain(createdDto)
             local.insertEntry(created)
             created
         } else {
@@ -36,9 +39,13 @@ class EntryRepositoryImpl @Inject constructor(
     override suspend fun getEntries(): List<Entry> {
         return if (isAuthorized()) {
             try {
-                val entries = remote.getEntries()
-                entries.forEach { local.insertEntry(it) }
-                entries
+                val dtos = remote.getEntries()
+                val domains = dtos.map(EntryMapper::dtoToDomain)
+                // Вместо domains.forEach(local::insertEntry)
+                for (entry in domains) {
+                    local.insertEntry(entry)  // этот suspend-функция теперь корректно вызывается
+                }
+                domains
             } catch (e: Exception) {
                 local.getEntries()
             }
@@ -47,12 +54,14 @@ class EntryRepositoryImpl @Inject constructor(
         }
     }
 
+
     override suspend fun getEntryById(id: Long): Entry? {
         return if (isAuthorized()) {
             try {
-                val entry = remote.getEntryById(id)
-                local.insertEntry(entry)
-                entry
+                val dto = remote.getEntryById(id)
+                val domain = EntryMapper.dtoToDomain(dto)
+                local.updateEntry(domain)
+                domain
             } catch (e: Exception) {
                 local.getEntryById(id)
             }
@@ -63,7 +72,8 @@ class EntryRepositoryImpl @Inject constructor(
 
     override suspend fun updateEntry(entry: Entry): Entry {
         return if (isAuthorized()) {
-            val updated = remote.updateEntry(entry)
+            val updatedDto = remote.updateEntry(entry.id!!, EntryMapper.domainToDto(entry))
+            val updated = EntryMapper.dtoToDomain(updatedDto)
             local.updateEntry(updated)
             updated
         } else {

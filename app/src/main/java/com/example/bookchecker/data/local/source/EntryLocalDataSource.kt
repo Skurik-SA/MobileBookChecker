@@ -1,5 +1,6 @@
 package com.example.bookchecker.data.local.source
 
+import com.example.bookchecker.data.remote.dto.EntryDto
 import com.example.bookchecker.domain.model.Entry
 
 interface EntryLocalDataSource {

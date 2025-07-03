@@ -6,7 +6,7 @@ import com.example.bookchecker.domain.model.Book
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
+//@Singleton
 class BookRemoteDataSourceImpl @Inject constructor(
     private val api: BookApi
 ) : BookRemoteDataSource {

@@ -8,9 +8,8 @@ import com.example.bookchecker.domain.repository.BookRepository
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
+
 class BookRepositoryImpl @Inject constructor(
     private val remote: BookRemoteDataSource,
     private val local: BookLocalDataSource,

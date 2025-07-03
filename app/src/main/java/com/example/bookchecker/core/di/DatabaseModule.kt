@@ -34,12 +34,4 @@ object DatabaseModule {
     @Provides
     fun provideNoteDao(db: AppDatabase): NoteDao = db.noteDao()
 
-//    @Provides @Singleton
-//    fun provideBookRepository(impl: BookRepositoryImpl): BookRepository = impl
-//
-//    @Provides @Singleton
-//    fun provideEntryRepository(impl: EntryRepositoryImpl): EntryRepository = impl
-//
-//    @Provides @Singleton
-//    fun provideNoteRepository(impl: NoteRepositoryImpl): NoteRepository = impl
 }

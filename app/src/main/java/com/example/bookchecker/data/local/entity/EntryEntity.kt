@@ -18,7 +18,7 @@ import androidx.room.PrimaryKey
     ]
 )
 data class EntryEntity(
-    @PrimaryKey(autoGenerate = true) val id: Long = 0L,
+    @PrimaryKey(autoGenerate = true) val id: Long? = 0L,
 
     @ColumnInfo(name = "book_id") val bookId: Long,
 
@@ -30,9 +30,9 @@ data class EntryEntity(
 
     @ColumnInfo(name = "current_page") val currentPage: Int,
 
-    val percent: Double,
+    val percent: Double? = 0.0,
 
-    @ColumnInfo(name = "progress_updated_at") val progressUpdatedAt: String,
+    @ColumnInfo(name = "progress_updated_at") val progressUpdatedAt: String?,
 
     @ColumnInfo(name = "rating_score") val ratingScore: Int?,
 

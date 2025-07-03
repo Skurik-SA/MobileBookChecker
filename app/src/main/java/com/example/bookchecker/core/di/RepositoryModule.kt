@@ -19,18 +19,18 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindBookRepository(
-        impl: BookRepositoryImpl
+        bookRepositoryImpl: BookRepositoryImpl
     ): BookRepository
 
     @Binds
     @Singleton
     abstract fun bindEntryRepository(
-        impl: EntryRepositoryImpl
+        entryRepositoryImpl: EntryRepositoryImpl
     ): EntryRepository
 
     @Binds
     @Singleton
     abstract fun bindNoteRepository(
-        impl: NoteRepositoryImpl
+        noteRepositoryImpl: NoteRepositoryImpl
     ): NoteRepository
 }

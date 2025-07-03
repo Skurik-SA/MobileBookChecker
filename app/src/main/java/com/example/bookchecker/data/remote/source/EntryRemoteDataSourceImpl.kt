@@ -13,29 +13,18 @@ import javax.inject.Singleton
 class EntryRemoteDataSourceImpl @Inject constructor(
     private val api: EntryApi
 ) : EntryRemoteDataSource {
+    override suspend fun createEntry(dto: EntryDto): EntryDto =
+        api.create(dto)
 
-    private fun mapDtoToDomain(dto: EntryDto): Entry {
-        val bookDomain = BookMapper.dtoToEntity(dto.book).let(BookMapper::entityToDomain)
-        val notesDomain = dto.notes.map { noteDto ->
-            NoteMapper.dtoToEntity(noteDto, dto.id).let(NoteMapper::entityToDomain)
-        }
-        val entryEntity = EntryMapper.dtoToEntity(dto)
-        return EntryMapper.entityToDomain(entryEntity, bookDomain, notesDomain)
-    }
+    override suspend fun getEntries(): List<EntryDto> =
+        api.list()
 
-    override suspend fun createEntry(entry: Entry): Entry =
-        api.create(EntryMapper.domainToDto(entry)).let(::mapDtoToDomain)
+    override suspend fun getEntryById(id: Long): EntryDto =
+        api.get(id)
 
-    override suspend fun getEntries(): List<Entry> =
-        api.list().map(::mapDtoToDomain)
+    override suspend fun updateEntry(id: Long, dto: EntryDto): EntryDto =
+        api.update(id, dto)
 
-    override suspend fun getEntryById(id: Long): Entry =
-        api.get(id).let(::mapDtoToDomain)
-
-    override suspend fun updateEntry(entry: Entry): Entry =
-        api.update(entry.id, EntryMapper.domainToDto(entry)).let(::mapDtoToDomain)
-
-    override suspend fun deleteEntry(id: Long) {
+    override suspend fun deleteEntry(id: Long) =
         api.delete(id)
-    }
 }

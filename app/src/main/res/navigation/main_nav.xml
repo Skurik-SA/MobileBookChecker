@@ -35,4 +35,11 @@
         android:name="com.example.bookchecker.feature.app_settings.presentation.AppSettingsFragment"
         android:label="Настройки"
         tools:layout="@layout/fragment_app_settings" />
+
+    <fragment
+        android:id="@+id/testApiFragment"
+        android:name="com.example.bookchecker.feature.test_api_screen.presentation.TestApiFragment"
+        android:label="Test API"
+        tools:layout="@layout/fragment_test_api" />
+
 </navigation>

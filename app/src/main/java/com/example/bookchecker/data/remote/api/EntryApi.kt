@@ -15,7 +15,7 @@ interface EntryApi {
 
     @PATCH("entries/{id}/")
     suspend fun update(
-        @Path("id") id: Long,
+        @Path("id") id: Long?,
         @Body dto: EntryDto
     ): EntryDto
 

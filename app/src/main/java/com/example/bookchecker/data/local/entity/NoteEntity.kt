@@ -18,11 +18,11 @@ import androidx.room.PrimaryKey
     ]
 )
 data class NoteEntity(
-    @PrimaryKey(autoGenerate = true) val id: Long = 0L,
+    @PrimaryKey(autoGenerate = true) val id: Long? = 0L,
 
-    @ColumnInfo(name = "entry_id") val entryId: Long,
+    @ColumnInfo(name = "entry_id") val entryId: Long?,
 
     val text: String,
 
-    @ColumnInfo(name = "created_at") val createdAt: String
+    @ColumnInfo(name = "created_at") val createdAt: String?
 )
