@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="backgroundLight">#262626</color> <!-- светло-серый -->
-    <color name="daynighttextcolor">#000000</color> <!-- белый-чёрный -->
 
     <!-- Основной цвет приложения -->
     <color name="primary">#6200EE</color> <!-- фиолетовый Material -->
