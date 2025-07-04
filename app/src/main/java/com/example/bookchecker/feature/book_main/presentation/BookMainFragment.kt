@@ -43,7 +43,7 @@ class BookMainFragment : Fragment(R.layout.fragment_book_main) {
         when (status) {
             BookStatus.TO_READ -> b.bottomNav.selectedItemId = R.id.bookToReadFragment
             BookStatus.READING -> b.bottomNav.selectedItemId = R.id.bookReadingFragment
-            BookStatus.FINISHED -> b.bottomNav.selectedItemId = R.id.bookFinishedFragment
+            BookStatus.READ -> b.bottomNav.selectedItemId = R.id.bookFinishedFragment
         }
 
         vm.setFilter(BookStatus.valueOf(statusArg))
@@ -76,7 +76,7 @@ class BookMainFragment : Fragment(R.layout.fragment_book_main) {
                     true
                 }
                 R.id.bookFinishedFragment -> {
-                    vm.setFilter(BookStatus.FINISHED)
+                    vm.setFilter(BookStatus.READ)
                     true
                 }
                 else -> false

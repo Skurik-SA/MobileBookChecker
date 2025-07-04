@@ -1,6 +1,6 @@
 package com.example.bookchecker.domain.model
 
-enum class BookStatus { TO_READ, READING, FINISHED }
+enum class BookStatus { TO_READ, READING, READ }
 
 data class Entry(
     val id: Long? = null,
