@@ -21,14 +21,21 @@ class BookMainAdapter(
         fun bind(e: Entry) {
             b.tvTitle.text = e.book.title
             b.tvAuthor.text = e.book.author
-            // загрузка обложки
-            b.ivCover.load(e.book.coverUrl) {
-                placeholder(R.drawable.ic_placeholder)
-                error(R.drawable.ic_placeholder)
+            // Обработка обложки: если URL есть — грузим, иначе ставим плейсхолдер
+            val url = e.book.coverUrl
+            if (!url.isNullOrBlank()) {
+                b.ivCover.load(url) {
+                    placeholder(R.drawable.ic_placeholder)
+                    error(R.drawable.ic_placeholder)
+                }
+            } else {
+                // Нет обложки — сразу плейсхолдер
+                b.ivCover.setImageResource(R.drawable.ic_placeholder)
             }
             // выставляем прогресс
             val percent = e.progress?.let { it.currentPage * 100 / e.book.totalPages } ?: 0
             b.progressBar.progress = percent
+
             b.root.setOnClickListener { onClick(e) }
         }
     }
