@@ -13,39 +13,27 @@ import com.example.bookchecker.feature.book_list.presentation.BookListAdapter
 
 class BookMainAdapter(
     private val onClick: (Entry) -> Unit
-) : ListAdapter<Entry, BookMainAdapter.BookViewHolder>(DIFF) {
-
-    companion object {
-        private val DIFF = object : DiffUtil.ItemCallback<Entry>() {
-            override fun areItemsTheSame(old: Entry, new: Entry) = old.id == new.id
-            override fun areContentsTheSame(old: Entry, new: Entry) = old == new
-        }
-    }
-
-    inner class BookViewHolder(private val b: ItemBookBinding)
-        : RecyclerView.ViewHolder(b.root) {
-
+) : ListAdapter<Entry, BookMainAdapter.VH>(object: DiffUtil.ItemCallback<Entry>() {
+    override fun areItemsTheSame(o: Entry, n: Entry) = o.id == n.id
+    override fun areContentsTheSame(o: Entry, n: Entry) = o == n
+}) {
+    inner class VH(val b: ItemBookBinding) : RecyclerView.ViewHolder(b.root) {
         fun bind(e: Entry) {
             b.tvTitle.text = e.book.title
             b.tvAuthor.text = e.book.author
+            // загрузка обложки
             b.ivCover.load(e.book.coverUrl) {
                 placeholder(R.drawable.ic_placeholder)
                 error(R.drawable.ic_placeholder)
             }
-            val progress = e.progress?.let {
-                if (e.book.totalPages != 0) (it.currentPage * 100) / e.book.totalPages else 0
-            } ?: 0
-
-            b.progressBar.progress = progress
+            // выставляем прогресс
+            val percent = e.progress?.let { it.currentPage * 100 / e.book.totalPages } ?: 0
+            b.progressBar.progress = percent
             b.root.setOnClickListener { onClick(e) }
         }
     }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        BookViewHolder(
-            ItemBookBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        )
-
-    override fun onBindViewHolder(holder: BookViewHolder, position: Int) =
-        holder.bind(getItem(position))
+    override fun onCreateViewHolder(p: ViewGroup, t: Int) = VH(
+        ItemBookBinding.inflate(LayoutInflater.from(p.context), p, false)
+    )
+    override fun onBindViewHolder(h: VH, pos: Int) = h.bind(getItem(pos))
 }

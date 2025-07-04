@@ -50,7 +50,7 @@ class BookMainFragment : Fragment(R.layout.fragment_book_main) {
 
         adapter = BookMainAdapter { entry ->
             findNavController().navigate(
-                R.id.action_bookCollection_to_bookDetail,
+                R.id.action_global_to_bookDetail,
                 bundleOf("entryId" to entry.id)
             )
         }

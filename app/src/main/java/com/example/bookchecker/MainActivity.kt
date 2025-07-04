@@ -113,7 +113,7 @@ class MainActivity : AppCompatActivity() {
         // Настраиваем клики
         listOf(
             R.id.profileLogo to null,
-            R.id.booksMain to R.id.bookListFragment,
+            R.id.booksMain to R.id.bookCollectionFragment,
             R.id.booksAdd to R.id.bookAddFragment,
             R.id.booksCollection to R.id.bookCollectionFragment,
             R.id.booksStats to R.id.bookStatsFragment,
