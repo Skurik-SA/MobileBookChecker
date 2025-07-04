@@ -2,7 +2,6 @@
 <resources>
     <!-- Фон -->
     <color name="backgroundLight">#FAFAFA</color> <!-- светло-серый -->
-    <color name="daynighttextcolor">#000000</color> <!-- белый-чёрный -->
 
     <!-- Основной цвет приложения -->
     <color name="primary">#6200EE</color> <!-- фиолетовый Material -->
