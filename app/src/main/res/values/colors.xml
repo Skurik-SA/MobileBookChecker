@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="m3_sys_light_on_primary">#FFFFFFFF</color>
+    <color name="m3_sys_light_surface_container_lowest">#FFFFFFFF</color>
+    <color name="m3_sys_light_inverse_on_surface">#F5EFF7</color>
+    <color name="m3_sys_light_on_surface">#1D1B20</color>
+    <color name="m3_sys_light_secondary_fixed">#E8DEF8</color>
+    <color name="m3_state_layers_light_surfaceContainer_opacity_0_16">#29F3EDF7</color>
+    <color name="m3_sys_light_on_surface_variant">#49454F</color>
+    <color name="m3_sys_light_on_secondary_fixed">#1D192B</color>
 </resources>

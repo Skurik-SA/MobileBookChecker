@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bookReadingFragment"
+        android:icon="@drawable/ic_reading"
+        android:title="Читаю" />
+
+    <item
+        android:id="@+id/bookFinishedFragment"
+        android:icon="@drawable/ic_finished"
+        android:title="Прочитано" />
+
+    <item
+        android:id="@+id/bookToReadFragment"
+        android:icon="@drawable/ic_to_read"
+        android:title="В планах" />
+
+</menu>
