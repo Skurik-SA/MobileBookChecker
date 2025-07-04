@@ -9,8 +9,23 @@
         android:id="@+id/bookCollectionFragment"
         android:name="com.example.bookchecker.feature.book_main.presentation.BookMainFragment"
         android:label="Коллекция"
-        tools:layout="@layout/fragment_book_main" />
-    <!-- другие фрагменты, actions и т.д. -->
+        tools:layout="@layout/fragment_book_main" >
+
+    <action
+        android:id="@+id/action_bookCollection_to_bookDetail"
+        app:destination="@id/bookDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/bookDetailFragment"
+        android:name="com.example.bookchecker.feature.book_detail.presentation.BookDetailFragment"
+        android:label="Детали книги"
+        tools:layout="@layout/fragment_book_detail">
+        <argument
+            android:name="entryId"
+            app:argType="long" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/bookAddFragment"
@@ -41,5 +56,38 @@
         android:name="com.example.bookchecker.feature.test_api_screen.presentation.TestApiFragment"
         android:label="Test API"
         tools:layout="@layout/fragment_test_api" />
+
+    <fragment
+        android:id="@+id/bookReadingFragment"
+        android:name="com.example.bookchecker.feature.book_main.presentation.BookMainFragment"
+        android:label="Читаю"
+        tools:layout="@layout/fragment_book_main" >
+        <argument
+            android:name="status"
+            app:argType="string"
+            android:defaultValue="READING" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/bookFinishedFragment"
+        android:name="com.example.bookchecker.feature.book_main.presentation.BookMainFragment"
+        android:label="Прочитано"
+        tools:layout="@layout/fragment_book_main" >
+        <argument
+            android:name="status"
+            app:argType="string"
+            android:defaultValue="FINISHED" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/bookToReadFragment"
+        android:name="com.example.bookchecker.feature.book_main.presentation.BookMainFragment"
+        android:label="В планах"
+        tools:layout="@layout/fragment_book_main" >
+        <argument
+            android:name="status"
+            app:argType="string"
+            android:defaultValue="TO_READ" />
+    </fragment>
 
 </navigation>

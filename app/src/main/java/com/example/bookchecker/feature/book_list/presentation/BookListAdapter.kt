@@ -13,8 +13,8 @@ class BookListAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: BookListItem) {
-            binding.titleTextView.text = item.title
-            binding.authorTextView.text = item.author
+            binding.tvTitle.text = item.title
+            binding.tvAuthor.text = item.author
         }
     }
 
